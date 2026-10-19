@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Llegó la hora de jugar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
+
+</head>
+<body>
+
+  <div class="audio-control" aria-label="Control de música">
+    <button type="button" id="audio-toggle" aria-pressed="false">▶ Reproducir audio</button>
+    <audio id="background-audio" preload="none" loop>
+      <source src="https://files.catbox.moe/zhw2vx.mp3" type="audio/mpeg">
+      Tu navegador no puede reproducir este audio.
+    </audio>
+    <span class="audio-note">Podés reproducir o pausar la pista</span>
+  </div>
+
+
+<main class="intro-main">
+  <h1>LLEGÓ LA HORA DE JUGAR:</h1>
+  <p class="story-text">Es el año 2084. Tras la guerra química desatada por Rusia como método de contención ante el virus que transformaba a la gente en portadores, en “zombies”, ha surgido una nueva mutación. Ahora los infectados son mucho más inteligentes, más rápidos y capaces de formar sociedades funcionales. Muchos lograron planificar y fabricar armamento y defensas corporales rústicas, lo que vuelve a los infectados mucho más peligrosos cuando actúan en grupo.</p>
+  <a class="start-link" href="situacion-1.html">Iniciar aventura</a>
+  <nav class="navigation" aria-label="Navegación">
+    <a href="index.html">Reiniciar aventura</a>
+  </nav>
+</main>
+
+
+  <footer>
+    <a href="https://www.instagram.com/santyydiaz__" target="_blank" rel="noopener noreferrer">Instagram del creador de la página</a>
+  </footer>
+
+
+  <script>
+    const audio = document.getElementById('background-audio');
+    const toggle = document.getElementById('audio-toggle');
+    toggle.addEventListener('click', async () => {
+      if (audio.paused) {
+        try {
+          await audio.play();
+          toggle.textContent = 'Ⅱ Pausar audio';
+          toggle.setAttribute('aria-pressed', 'true');
+        } catch (error) {
+          toggle.textContent = 'No se pudo reproducir: intentar de nuevo';
+        }
+      } else {
+        audio.pause();
+        toggle.textContent = '▶ Reproducir audio';
+        toggle.setAttribute('aria-pressed', 'false');
+      }
+    });
+    audio.addEventListener('ended', () => {
+      toggle.textContent = '▶ Reproducir audio';
+      toggle.setAttribute('aria-pressed', 'false');
+    });
+  </script>
+
+</body>
+</html>

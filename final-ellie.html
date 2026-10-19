@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mal final — Ellie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
+
+</head>
+<body>
+
+  <div class="audio-control" aria-label="Control de música">
+    <button type="button" id="audio-toggle" aria-pressed="false">▶ Reproducir audio</button>
+    <audio id="background-audio" preload="none" loop>
+      <source src="https://files.catbox.moe/zhw2vx.mp3" type="audio/mpeg">
+      Tu navegador no puede reproducir este audio.
+    </audio>
+    <span class="audio-note">Podés reproducir o pausar la pista</span>
+  </div>
+
+
+<main>
+  <h1>Mal final</h1>
+  <p class="story-text">¡Por poco! Ellie intentó ayudarte a escapar, pero mientras corrían te tropezaste torpemente. Ella intentó rescatarte, pero un zombie armado con una lanza te empaló contra el suelo. Para cuando Ellie se acercó, vos ya estabas en mejor vida. ¡Suerte para la próxima! Tu familia va a extrañarte.</p>
+  <nav class="navigation" aria-label="Navegación">
+    <a href="situacion-1.html">Volver a la decisión</a>
+    <a href="index.html">Reiniciar aventura</a>
+  </nav>
+</main>
+
+
+  <footer>
+    <a href="https://www.instagram.com/santyydiaz__" target="_blank" rel="noopener noreferrer">Instagram del creador de la página</a>
+  </footer>
+
+
+  <script>
+    const audio = document.getElementById('background-audio');
+    const toggle = document.getElementById('audio-toggle');
+    toggle.addEventListener('click', async () => {
+      if (audio.paused) {
+        try {
+          await audio.play();
+          toggle.textContent = 'Ⅱ Pausar audio';
+          toggle.setAttribute('aria-pressed', 'true');
+        } catch (error) {
+          toggle.textContent = 'No se pudo reproducir: intentar de nuevo';
+        }
+      } else {
+        audio.pause();
+        toggle.textContent = '▶ Reproducir audio';
+        toggle.setAttribute('aria-pressed', 'false');
+      }
+    });
+    audio.addEventListener('ended', () => {
+      toggle.textContent = '▶ Reproducir audio';
+      toggle.setAttribute('aria-pressed', 'false');
+    });
+  </script>
+
+</body>
+</html>

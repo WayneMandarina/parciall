@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Situación 1 — Es hora de decidir</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
+
+</head>
+<body>
+
+  <div class="audio-control" aria-label="Control de música">
+    <button type="button" id="audio-toggle" aria-pressed="false">▶ Reproducir audio</button>
+    <audio id="background-audio" preload="none" loop>
+      <source src="https://files.catbox.moe/zhw2vx.mp3" type="audio/mpeg">
+      Tu navegador no puede reproducir este audio.
+    </audio>
+    <span class="audio-note">Podés reproducir o pausar la pista</span>
+  </div>
+
+
+<img class="background-image" src="https://i.imgur.com/sEnKJXj.jpeg" alt="" aria-hidden="true">
+<main class="situation-main">
+  <h1>ES HORA DE DECIDIR</h1>
+  <p class="story-text">Sos un joven de 22 años. Te encontrabas buscando alimento en una vieja casa muy alejada de tu pueblo. Al intentar volver sobre tus pasos, te das cuenta de que te has perdido. Mientras caminás sin rumbo, te topás con una gran edificación monumental: ¡un castillo medieval! Al ingresar para buscar suministros, una horda de zombies te acorrala inesperadamente. La muerte parece inminente.</p>
+  <p class="story-text">De la nada aparecen Ellie y Joel por caminos distintos. Ambos te ofrecen ayuda para escapar.</p>
+  <p class="question">¿Con quién decidís escapar?</p>
+  <div class="choices">
+    <a class="choice-button" href="final-joel.html">Opción 1: Joel</a>
+    <a class="choice-button" href="final-ellie.html">Opción 2: Ellie</a>
+  </div>
+  <nav class="navigation" aria-label="Navegación">
+    <a href="index.html">Volver al inicio</a>
+    <a href="index.html">Reiniciar aventura</a>
+  </nav>
+</main>
+
+
+  <footer>
+    <a href="https://www.instagram.com/santyydiaz__" target="_blank" rel="noopener noreferrer">Instagram del creador de la página</a>
+  </footer>
+
+
+  <script>
+    const audio = document.getElementById('background-audio');
+    const toggle = document.getElementById('audio-toggle');
+    toggle.addEventListener('click', async () => {
+      if (audio.paused) {
+        try {
+          await audio.play();
+          toggle.textContent = 'Ⅱ Pausar audio';
+          toggle.setAttribute('aria-pressed', 'true');
+        } catch (error) {
+          toggle.textContent = 'No se pudo reproducir: intentar de nuevo';
+        }
+      } else {
+        audio.pause();
+        toggle.textContent = '▶ Reproducir audio';
+        toggle.setAttribute('aria-pressed', 'false');
+      }
+    });
+    audio.addEventListener('ended', () => {
+      toggle.textContent = '▶ Reproducir audio';
+      toggle.setAttribute('aria-pressed', 'false');
+    });
+  </script>
+
+</body>
+</html>
